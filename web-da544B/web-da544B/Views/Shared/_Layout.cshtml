@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@ViewBag.Title - My ASP.NET Application</title>
+	@Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/modernizr")
+	<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+	<link href="~/Content/toastr.css" rel="stylesheet" />
+	<script src="~/Scripts/toastr.min.js"></script>
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li>@Html.ActionLink("Home", "Index", "Home")</li>
+					@*<li>@Html.ActionLink("About", "About", "Home")</li>*@
+					@*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+
+					@if (Request.IsAuthenticated)
+					{
+						<li>@Html.ActionLink("Book ", "Index", "BookInfoes")</li>
+						<li>@Html.ActionLink("MyOrders", "Index", "Order")</li>
+					}
+				</ul>
+				@Html.Partial("_LoginPartial")
+			</div>
+			@using (Html.BeginForm("SearchView", "BookInfoes"))
+			{
+				@*<form role="search" class="navbar-form navbar-left">
+						<div class="form-group">
+							<input type="text" name="searchvalue" placeholder="Search by category" class="form-control">
+						</div>
+					</form>*@
+				<div class="row">
+					<div id="custom-search-input">
+						<div class="input-group col-md-12">
+							<input type="text" class="search-query form-control" placeholder="Search book by ISBNNo" name="searchvalue" />
+							<span class="input-group-btn">
+								<button class="btn btn-danger" type="button">
+									<span class="glyphicon glyphicon-search"></span>
+								</button>
+							</span>
+						</div>
+					</div>
+				</div>
+			}
+			<input type="text" value="Success" id="success" />
+
+			@*<input type="button" value="Success" id="success" />*@
+		</div>
+	</div>
+	<div class="container body-content">
+		@RenderBody()
+
+
+		<hr />
+		<footer>
+			<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+		</footer>
+	</div>
+
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/bootstrap")
+	@RenderSection("scripts", required: false)
+</body>
+
+</html>
+<script>
+	
+	$(document).ready(function () {
+		setTimeout(function () {
+			toastr.success("YYEESSSSSSS");
+		}, 2000); // 5000 to load it after 5 seconds from page load
+	});
+
+
+	$(function () {
+		//$('#error').click(function () {
+		//	// make it not dissappear
+		//	toastr.error("Noooo oo oo ooooo!!!", "Title", {
+		//		"timeOut": "0",
+		//		"extendedTImeout": "0"
+		//	});
+		//});
+		//$('#info').click(function () {
+		//	// title is optional
+		//	toastr.info("Info Message", "Title");
+		//});
+		//$('#warning').click(function () {
+		//	toastr.warning("Warning");
+		//});
+		//$('#success').load(function () {
+		//	toastr.success("YYEESSSSSSS");
+		//});
+	});
+</script>
+<style>
+	#custom-search-input {
+		margin: 0;
+		margin-top: 10px;
+		padding: 0;
+	}
+
+		#custom-search-input .search-query {
+			padding-right: 3px;
+			padding-right: 4px \9;
+			padding-left: 3px;
+			padding-left: 4px \9;
+			/* IE7-8 doesn't have border-radius, so don't indent the padding */
+			margin-bottom: 0;
+			-webkit-border-radius: 3px;
+			-moz-border-radius: 3px;
+			border-radius: 3px;
+		}
+
+		#custom-search-input button {
+			border: 0;
+			background: none;
+			/** belows styles are working good */
+			padding: 2px 5px;
+			margin-top: 2px;
+			position: relative;
+			left: -28px;
+			/* IE7-8 doesn't have border-radius, so don't indent the padding */
+			margin-bottom: 0;
+			-webkit-border-radius: 3px;
+			-moz-border-radius: 3px;
+			border-radius: 3px;
+			color: #D9230F;
+		}
+
+	.search-query:focus + button {
+		z-index: 3;
+	}
+</style>

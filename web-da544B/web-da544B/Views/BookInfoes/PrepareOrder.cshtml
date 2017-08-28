@@ -1,0 +1,99 @@
+﻿@model IEnumerable<web_da544B.Models.BookInfo>
+
+@{
+	ViewBag.Title = "PrepareOrder";
+}
+
+<h2>PrepareOrder</h2>
+
+
+
+
+<table class="table">
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.Title)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Author)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Price)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Year)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.ISBNNo)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.CoverPageImageUrl)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.BookCategory)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.QuantityPerOrder)
+		</th>
+		<th></th>
+	</tr>
+
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.Title)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Author)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Price)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Year)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.ISBNNo)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.CoverPageImageUrl)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.BookCategory)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.QuantityPerOrder)
+			</td>
+		</tr>
+	}
+
+</table>
+<div class="form-group col-md-2">
+	<label class="form-control-static" for="amount">Total Amount: <i class="fa fa-money"></i> @ViewBag.amount</label>
+</div>
+
+@using (Html.BeginForm("GetVerification", "BookInfoes"))
+{
+	<div class="container">
+	
+		<button class="btn-success" onclick="chkout()" type="submit"> Get Confirmation</button>
+
+		@*<input type="button" value="Success" id="success" />*@
+	</div>
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+
+<script>
+	var chkout = function () {
+		//document.getElementById("quantity").value = q;
+		//document.getElementById("itemID").value = item.ID;
+	};
+
+
+	$(document).ready(function () {
+		$('[data-toggle="popover"]').popover();
+	});
+</script>

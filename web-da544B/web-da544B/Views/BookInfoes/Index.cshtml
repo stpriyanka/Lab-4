@@ -1,0 +1,93 @@
+﻿@model IEnumerable<web_da544B.Models.BookInfo>
+
+@{
+	ViewBag.Title = "Order books";
+}
+
+<h2>Book Info</h2>
+
+
+<div class="container">
+	<div class="row">
+
+		@foreach (var item in Model)
+		{
+			<div class="col-xs-18 col-sm-6 col-md-3">
+				<div class="thumbnail">
+					@Html.DisplayNameFor(model => model.CoverPageImageUrl)
+					<img src="http://placehold.it/500x250/EEE">
+					<div class="caption">
+						<h4>@Html.DisplayNameFor(model => model.Title) @Html.DisplayFor(modelItem => item.Title)</h4>
+						<p>@Html.DisplayNameFor(model => model.Author) @Html.DisplayFor(modelItem => item.Author)</p>
+						<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, suscipit</p>
+						<p>@Html.DisplayNameFor(model => model.Price) @Html.DisplayFor(modelItem => item.Price)</p>
+						<p>@Html.DisplayNameFor(model => model.ISBNNo) @Html.DisplayFor(modelItem => item.ISBNNo)</p>
+
+						@*Quantity of book and price according to it*@
+						<button type="button" value="Add" class="btn btn-default btn-xs" onclick="cartOperation(@item.ID,'add')"><span class="glyphicon glyphicon-plus-sign"></span></button>
+						<button type="button" value="Remove" class="btn btn-default btn-xs" onclick="cartOperation(@item.ID,'remove')"><span class="glyphicon glyphicon-minus-sign"></span></button>
+
+
+					</div>
+				</div>
+			</div>
+		}
+
+	</div><!--/row-->
+	<br />
+	<br />
+	<br />
+	@using (Html.BeginForm("PrepareOrder", "BookInfoes"))
+	{
+		<div class="container">
+			<input type="hidden" id="list" name="itemIds" />
+			<button class="btn btn-default btn-lg" onclick="chkout()" type="submit">
+				<i class="fa fa-cart-plus"></i>	 Checkout  <i class="fa fa-arrow-right"></i> <span id="mycart" class="badge">0</span>
+			</button>
+		</div>
+	}
+</div><!--/container -->
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<style>
+	.thumbnail { padding: 0; }
+</style>
+<script>
+	var chkout = function () {
+		document.getElementById("quantity").value = q;
+		document.getElementById("itemID").value = item.ID;
+	};
+
+
+	var itemlist = [];
+	var cartOperation = function (input, operation) {
+
+		//adding to list
+		if (operation === "add") {
+			itemlist.push(input);
+		}
+
+		//Removing from list
+		if (operation === "remove") {
+			if (itemlist.length > 0 && itemlist.indexOf(input) !== -1) {
+				itemlist.splice(itemlist.indexOf(input), 1);
+			}
+		}
+
+		//Live update number of quantities
+		cartoperation();
+	};
+
+	//This function sets total number of items in checkout button
+	var cartoperation = function () {
+		var cartbtn = document.querySelector('#mycart');
+		cartbtn.textContent = itemlist.length;
+	};
+
+
+	var chkout = function () {
+		document.getElementById("list").value = itemlist;
+	};
+
+</script>
