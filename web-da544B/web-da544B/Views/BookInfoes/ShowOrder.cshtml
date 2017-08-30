@@ -17,16 +17,16 @@
 		<th>
 			@Html.DisplayNameFor(model => model.Quantity)
 		</th>
-		<th>
+		@*<th>
 			@Html.DisplayNameFor(model => model.Category)
-		</th>
-
-
-		<th>
+		</th>*@
 		<th>
 			Title
 		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.CreatedAT)
 		</th>
+
 	</tr>
 
 	@foreach (var item in Model)
@@ -41,14 +41,17 @@
 			<td>
 				@Html.DisplayFor(modelItem => item.Quantity)
 			</td>
-			<td>
+			@*<td>
 				@Html.DisplayFor(modelItem => item.Category)
-			</td>
+			</td>*@
 			<td>
 				@foreach (var b in item.BookInfos)
 				{
 					@Html.DisplayFor(modelItem => b.Title)
 				}
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.CreatedAT)
 			</td>
 		</tr>
 	}

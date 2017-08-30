@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 
@@ -45,6 +46,8 @@ namespace web_da544B.Models
 		public int Quantity { get; set; }
 
 		public string Category { get; set; }
+
+		public DateTime CreatedAT { get; set; }
 
 	}
 

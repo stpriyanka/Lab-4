@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
@@ -101,7 +102,8 @@ namespace web_da544B.Controllers
 				BookInfos = bookInfos,
 				TotalPrice = amountToPay,
 				Quantity = bookIds.Count,
-				CustomerEmail = User.Identity.Name
+				CustomerEmail = User.Identity.Name,
+				CreatedAT = DateTime.UtcNow
 			};
 
 			_bookContext.Orders.Add(o);
