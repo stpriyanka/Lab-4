@@ -9,6 +9,7 @@
 	<script src="~/Scripts/jquery-1.10.2.min.js"></script>
 	<link href="~/Content/toastr.css" rel="stylesheet" />
 	<script src="~/Scripts/toastr.min.js"></script>
+	<script src="~/Scripts/Custom.js"></script>
 </head>
 <body>
 	<div class="navbar navbar-inverse navbar-fixed-top">
@@ -42,25 +43,26 @@
 							<input type="text" name="searchvalue" placeholder="Search by category" class="form-control">
 						</div>
 					</form>*@
-				<div class="row">
-					<div id="custom-search-input">
-						<div class="input-group col-md-12">
-							<input type="text" class="search-query form-control" placeholder="Search book by ISBNNo" name="searchvalue" />
-							<span class="input-group-btn">
-								<button class="btn btn-danger" type="button">
-									<span class="glyphicon glyphicon-search"></span>
-								</button>
-							</span>
-						</div>
-					</div>
-				</div>
+				
 			}
-			<input type="text" value="Success" id="success" />
+			@*<input type="text" value="Success" id="success" />*@
 
 			@*<input type="button" value="Success" id="success" />*@
 		</div>
 	</div>
 	<div class="container body-content">
+		<div class="row">
+			<div id="custom-search-input">
+				<div class="input-group col-md-12">
+					<input type="text" class="search-query form-control" placeholder="Search book by ISBNNo" name="searchvalue" />
+					<span class="input-group-btn">
+						<button class="btn btn-danger" type="button">
+							<span class="glyphicon glyphicon-search"></span>
+						</button>
+					</span>
+				</div>
+			</div>
+		</div>
 		@RenderBody()
 
 
@@ -78,21 +80,21 @@
 </html>
 <script>
 	
-	$(document).ready(function () {
-		setTimeout(function () {
-			toastr.success("YYEESSSSSSS");
-		}, 2000); // 5000 to load it after 5 seconds from page load
-	});
+	//$(document).ready(function () {
+	//	setTimeout(function () {
+	//		toastr.success("YYEESSSSSSS");
+	//	}, 2000); // 5000 to load it after 5 seconds from page load
+	//});
 
 
-	$(function () {
-		//$('#error').click(function () {
-		//	// make it not dissappear
-		//	toastr.error("Noooo oo oo ooooo!!!", "Title", {
-		//		"timeOut": "0",
-		//		"extendedTImeout": "0"
-		//	});
-		//});
+	//$(function () {
+	//	$('#error').click(function () {
+	//		// make it not dissappear
+	//		toastr.error("Noooo oo oo ooooo!!!", "Title", {
+	//			"timeOut": "0",
+	//			"extendedTImeout": "0"
+	//		});
+	//	});
 		//$('#info').click(function () {
 		//	// title is optional
 		//	toastr.info("Info Message", "Title");
@@ -103,7 +105,7 @@
 		//$('#success').load(function () {
 		//	toastr.success("YYEESSSSSSS");
 		//});
-	});
+	//});
 </script>
 <style>
 	#custom-search-input {

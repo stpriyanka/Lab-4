@@ -4,42 +4,50 @@
 	ViewBag.Title = "GetVerification";
 }
 
+<br />
+<br />
+<br />
 <h2>GetVerification</h2>
 
 <div class="jumbotron text-xs-center">
 	<h1 class="display-3">Thank You!</h1>
-	<p class="lead"><strong>Please refresh this page to get our payment verified message!</strong> Once you get notified about confirmation remember your order Id for further query.</p>
+	<p class="lead"><strong>Please click on the button below to final transaction!</strong> Once you get notified about confirmation remember your order Id for further query.</p>
 	<hr>
-	<p>
+	@*<p>
 		Having trouble? <a href="">Contact us</a>
-	</p>
-	<p class="lead">
-		<a class="btn btn-primary btn-sm" href="ShowOrder.cshtml" role="button">Continue to homepage</a>
-	</p>
+	</p>*@
+	@*<p class="lead">
+		<a class="btn btn-primary btn-sm" href="BookInfoes.cshtml" role="button">Continue to homepage</a>
+	</p>*@
 </div>
 
 
-@if (@ViewBag.notify != null)
+@if (ViewBag.notify != null)
 {
-	<input type="text" onload="myFunction()" src="@ViewBag.notify" value="@ViewBag.notify" id="success" />
-
-	//<p id="success"></p>
-
+	<h2>@ViewBag.notify </h2>
+	<p>Your order has been verified! Thank you for shopping from here.</p>
+	<p>Please store your order ID before leave the window.</p>
+	
+	<input type="text" value="error" id="error" />
 }
 
-
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/toastr.min.js"></script>
 
 <script>
-	//$(function() {
-	//document.getElementById("success").innerHTML = "Iframe is loaded.";
+	$(function () {
+		$('#error').click(function () {
+			// make it not dissappear
+			toastr.error("Noooo oo oo ooooo!!!", "Title", {
+				"timeOut": "0",
+				"extendedTImeout": "0"
+			});
+		});
 
-	//$('#success').load(function () {
-	function myFunction() {
-		toastr.success(@ViewBag.notify);
-	}
-	//}
-
-	//});
-	//});
+		$('#success').click(function () {
+			toastr.success("Order has been proccessed!");
+		});
+	});
 
 </script>
+

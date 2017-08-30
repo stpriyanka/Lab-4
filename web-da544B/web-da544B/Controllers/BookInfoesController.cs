@@ -129,9 +129,10 @@ namespace web_da544B.Controllers
 			queue.AddMessage(queueMessage, null);
 
 			//save notification in web job
-			_bookContext.Notifications.Add(n);
-			_bookContext.SaveChanges();
+			//_bookContext.Notifications.Add(n);
+			//_bookContext.SaveChanges();
 
+			ViewBag.OrderId = o.ID;
 			return View(bookInfos);
 		}
 
@@ -143,17 +144,19 @@ namespace web_da544B.Controllers
 
 
 		//need to get exact notification some how
-		public ActionResult GetVerification()
+		public ActionResult GetVerification(int OrderId)
 		{
-			var n = _bookContext.Notifications.FirstOrDefault(x => x.OrderID == 6);
-			if (n.isRead == false)
-			{
-				ViewBag.notify = "Paid!";
-			}
-			_bookContext.Notifications.Add(n);
-			_bookContext.SaveChanges();
+			var n = _bookContext.Notifications.FirstOrDefault(x => x.OrderID == OrderId);
 
-			//return pop up in the view
+			if (n != null && n.isRead == false)
+			{
+				//return pop up in the view
+				ViewBag.notify = "Order Id " + OrderId + " has been Paid!";
+
+				n.isRead = true;
+				_bookContext.SaveChanges();
+			}
+
 			return View();
 		}
 	}
