@@ -14,22 +14,23 @@
 	<p class="lead"><strong>Please click on the button below to final transaction!</strong> Once you get notified about confirmation remember your order Id for further query.</p>
 	<hr>
 	@*<p>
-		Having trouble? <a href="">Contact us</a>
-	</p>*@
+			Having trouble? <a href="">Contact us</a>
+		</p>*@
 	@*<p class="lead">
-		<a class="btn btn-primary btn-sm" href="BookInfoes.cshtml" role="button">Continue to homepage</a>
-	</p>*@
+			<a class="btn btn-primary btn-sm" href="BookInfoes.cshtml" role="button">Continue to homepage</a>
+		</p>*@
+
+	@if (ViewBag.notify != null)
+	{
+		<h2>@ViewBag.notify </h2>
+		<p class="lead">Your order has been verified! Thank you for shopping from here.</p>
+		<p class="lead">Please store your order ID before leave the window.</p>
+
+		<input type="hidden" value="error" id="error" />
+	}
 </div>
 
 
-@if (ViewBag.notify != null)
-{
-	<h2>@ViewBag.notify </h2>
-	<p>Your order has been verified! Thank you for shopping from here.</p>
-	<p>Please store your order ID before leave the window.</p>
-	
-	<input type="text" value="error" id="error" />
-}
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/toastr.min.js"></script>
